@@ -43,9 +43,8 @@ if __name__ == "__main__":
 
     sales_total_df = join_csv_location.groupBy("store_location_key").agg(F.sum("sales").alias("sales_total"))
     sales_total_df = sales_total_df.join(location_df, sales_total_df.store_location_key == location_df.store_location_key).select(sales_total_df["*"], location_df["province"])
-    #sales_total_df = sales_total_df.join(average_province_df, sales_total_df.province == average_province_df.province).select(sales_total_df["*"], average_province_df["avg_sales"])
 
-    # get what we want
+    # get what we want (ie. Top store by province vs average provincial sales)
 
     final_1_df = sales_total_df.groupBy("province").agg(F.max("sales_total").alias("sales_total"))
     final_1_df = final_1_df.join(sales_total_df, final_1_df.sales_total == sales_total_df.sales_total).select(final_1_df["*"], sales_total_df["store_location_key"])
@@ -74,3 +73,20 @@ if __name__ == "__main__":
     
     final_4_df = join_csv_product_df.groupBy("category").count()
     final_4_df = final_4_df.orderBy(final_4_df["count"].desc())
+
+    # Question 3
+    # determine the top 5 stores by province
+
+    w = Window.partitionBy(sales_total_df.province).orderBy(sales_total_df.sales_total.desc())
+
+    final_5_df = sales_total_df.select("*", F.rank().over(w).alias("rank")).filter(F.col("rank") <= 5)
+
+    # top 10 categories by department
+
+    product_2_df = product_df.dropDuplicates(["category"]).select(product_df.department, product_df.category.alias("category_x"))
+    final_6_df = final_3_df.join(product_2_df, final_3_df.category == product_2_df.category_x, "left")\
+                            .select(final_3_df["*"], product_2_df.department)
+
+    w = Window.partitionBy(final_6_df.department).orderBy(final_6_df.total_sales.desc())
+
+    final_6_df = final_6_df.select("*", F.rank().over(w).alias("rank")).filter(F.col("rank") <= 10)
