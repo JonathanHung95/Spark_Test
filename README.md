@@ -22,7 +22,6 @@ Considerations to extend to another retail store:
 
 ### Top store by province vs average provincial sales
 
-|----------------|------------------|------------------|-----------------|
 |        province|store_location_key|       sales_total|        avg_sales|
 |----------------|------------------|------------------|-----------------|
 |BRITISH COLUMBIA|              7167|44512.810000000056|19823.40333333335|
@@ -30,7 +29,6 @@ Considerations to extend to another retail store:
 |         ALBERTA|              9807|226059.89000000042|36074.87727272729|
 |        MANITOBA|              4823| 55826.76000000021|18701.93000000007|
 |         ONTARIO|              8142| 378059.2800000014|55228.75555555575|
-|----------------|------------------|------------------|-----------------|
 
 The province gives us the province of the store.
 The store_location_key gives us the key of the store.
@@ -41,12 +39,10 @@ The stores in the table are the ones with the highest sales from each province f
 
 ### Loyalty vs Non-Loyalty Customers
 
-|-------|------------------|
 |loyalty|         avg_sales|
 |-------|------------------|
 |      1| 22.33717102045659|
 |      0|19.794947792546285|
-|-------|------------------|
 
 Loyalty represents whether the customer is in the loyalty program or not.  1 means they are and 0 means they are not.
 avg_sales is the average sales generated from each loyalty segment.
@@ -61,7 +57,6 @@ From the data, fe148072 has the highest total sales at 24035.56.  On the other h
 
 ### Top 5 stores by province
 
-|------------------|------------------|----------------|----|
 |store_location_key|       sales_total|        province|rank|
 |------------------|------------------|----------------|----|
 |              7167|44512.810000000056|BRITISH COLUMBIA|   1|
@@ -82,7 +77,6 @@ From the data, fe148072 has the highest total sales at 24035.56.  On the other h
 |              1396|112464.72000000074|         ONTARIO|   3|
 |              1891|  76338.6899999998|         ONTARIO|   4|
 |              6979|50069.720000000125|         ONTARIO|   5|
-|------------------|------------------|----------------|----|
 
 The store_location_key gives us the key of the store.
 The sales_total column gives us the total sales of each store.
@@ -93,7 +87,6 @@ The table shows the top 5 stores by province.  Note that some stores have no tra
 
 ### Top 10 products by department
 
-|--------|------------------|----------|----|
 |category|       total_sales|department|rank|
 |--------|------------------|----------|----|
 |687ed9e3|13126.849999999964|   a461091|   1|
@@ -168,9 +161,10 @@ The table shows the top 5 stores by province.  Note that some stores have no tra
 |69a49d36|2513.1600000000008|  4b8d7c31|  10|
 |5d6df0e5|              17.8|  144711b0|   1|
 |32bf7d96| 4734.799999999998|  2aa3a6c1|   1|
-|--------|------------------|----------|----|
 
 Category gives the product's category.
 The total_sales column gives the total sales of the product from the transaction data.
 Department gives the department that the product belongs to.
 Rank gives the rank of each category within the department.
+
+The table gives the top 10 products by department.  It should be noted that since there is negative sales data, some of the total_sales are negative.  
