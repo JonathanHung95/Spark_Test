@@ -1,5 +1,6 @@
 # Spark_Test
-Repository for WCD Spark Test.
+
+Code and documentation to answer questions/explain things for WeCloudData Spark test.  
 
 ## Step 1 - Data Gathering and Ingestion
 
@@ -16,7 +17,7 @@ We import all the csv data into a single data frame and replace all the nulls in
 Considerations to extend to another retail store:
 1. Check that the null data needs to be handled the same way (for example, maybe they would prefer the data deleted instead)
 2. Transaction data follows the same schema
-3. Should negative sales and units stay in the data
+3. Check if we should keep negative sales and units in the data
 
 ## Step 3 - Gather insights from the data
 
